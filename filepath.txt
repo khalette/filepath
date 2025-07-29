@@ -1,0 +1,35 @@
+def read_file(file_path):
+    Read content from a file.
+    try:
+        with open(file_path, 'r') as file:
+            content = file.read()
+        return content
+    except FileNotFoundError:
+        print(f"Error: The file '{file_path}' does not exist.")
+        return None
+    except IOError:
+        print(f"Error: The file '{file_path}' cannot be read.")
+        return None
+
+def write_file(file_path, content):
+    Write content to a file.
+    try:
+        with open(file_path, 'w') as file:
+            file.write(content)
+        print(f"Content successfully written to '{file_path}'.")
+    except IOError:
+        print(f"Error: The file '{file_path}' cannot be written.")
+
+def main():
+    input_filename = input("Enter the name of the file to read: ")
+    content = read_file(input_filename)
+
+    if content is not None:
+        # Modify the content (for example, convert to uppercase)
+        modified_content = content.upper()
+
+        output_filename = input("Enter the name of the new file to write: ")
+        write_file(output_filename, modified_content)
+
+if __name__ == "__main__":
+    main()
